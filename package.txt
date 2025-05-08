@@ -1,4 +1,2 @@
 
 com.sec.android.app.launcher.recents.overlay
-
-org.blinksd.settings
