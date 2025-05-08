@@ -131,7 +131,7 @@ fi
 ui_print " "
 
 # sdk
-NUM=35
+NUM=29
 if [ "$API" -lt $NUM ]; then
   ui_print "! Unsupported SDK $API."
   ui_print "  You have to upgrade your Android version"
@@ -143,20 +143,20 @@ else
 fi
 
 # one ui core
-FILE=/data/adb/modules/OneUICore/module.prop
-NUM=`grep_prop versionCode $FILE`
-if [ ! -f $FILE ]; then
-  ui_print "! One UI Core Magisk Module is not installed."
-  ui_print "  Please read the Installation Guide!"
-  abort
-elif [ "$NUM" -lt 15 ]; then
-  ui_print "! This version requires One UI Core Magisk Module"
-  ui_print "  v1.5 or above."
-  abort
-else
-  rm -f /data/adb/modules/OneUICore/remove
-  rm -f /data/adb/modules/OneUICore/disable
-fi
+# FILE=/data/adb/modules/OneUICore/module.prop
+# NUM=`grep_prop versionCode $FILE`
+# if [ ! -f $FILE ]; then
+#   ui_print "! One UI Core Magisk Module is not installed."
+#   ui_print "  Please read the Installation Guide!"
+#   abort
+# elif [ "$NUM" -lt 15 ]; then
+#   ui_print "! This version requires One UI Core Magisk Module"
+#   ui_print "  v1.5 or above."
+#   abort
+# else
+#   rm -f /data/adb/modules/OneUICore/remove
+#   rm -f /data/adb/modules/OneUICore/disable
+# fi
 
 # recovery
 mount_partitions_in_recovery
@@ -213,18 +213,18 @@ NAMES=oneuilauncher
 conflict
 
 # recents
-NUM=35
-if [ "`grep_prop oneui.recents $OPTIONALS`" == 1 ]; then
-  if [ "$API" -ge $NUM ]; then
+NUM=29
+# if [ "`grep_prop oneui.recents $OPTIONALS`" == 1 ]; then
+  # if [ "$API" -ge $NUM ]; then
     RECENTS=true
-  else
-    RECENTS=false
-    ui_print "- The recents provider is only for SDK $NUM and up"
-    ui_print " "
-  fi
-else
-  RECENTS=false
-fi
+#   else
+#     RECENTS=false
+#     ui_print "- The recents provider is only for SDK $NUM and up"
+#     ui_print " "
+#   fi
+# else
+#   RECENTS=false
+# fi
 if [ "$RECENTS" == true ]; then
   NAME=*RecentsOverlay.apk
   ui_print "- $MODNAME recents provider will be activated"
